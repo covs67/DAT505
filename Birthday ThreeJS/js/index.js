@@ -12,7 +12,7 @@ function init(){
   renderer.setClearColor("#000000");
 
   renderer.setSize( window.innerWidth, window.innerHeight );
-//
+
   document.body.appendChild( renderer.domElement );
 }
 
