@@ -1,4 +1,4 @@
-# DAT505
+# DAT505 Project
 Happy birthday Three.Js project:
 
 Classical Audiovisual experience using three JS.
