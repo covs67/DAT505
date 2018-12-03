@@ -31,27 +31,32 @@ function geoletters() {
     		bevelSize: 8,
     		bevelSegments: 5
     	});
-      console.log('loader called back, hee is the geometry', geometry)
+
       material = new THREE.MeshBasicMaterial( { color: "#FF00FF" } );
       mesh = new THREE.Mesh( geometry, material );
       mesh.position.z = -1000;
 
+      var loader = new THREE.TextureLoader();
 
+      var texture = loader.load( "imgs/cake.png", function ( texture ) {
+          texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+          texture.offset.set( 0, 0 );
+          texture.repeat.set( 2, 2 );
+      } );
+      var material1 = new THREE.MeshPhongMaterial( {
+         color: 0xffffff,
+         specular:0x111111,
+         shininess: 10,
+         map: texture,
+      } );
 
-//function2
-
-cake1 = new THREE.BoxGeometry( 10, 10, 10 );
-
-texture_Cake1 = new THREE.TextureLoader().load( "imgs/cake.png" );
-
-material_Cake1 = new THREE.MeshBasicMaterial( { map: texture} );
-
-mesh_Cake1 = new THREE.Mesh( cake1, material_Cake1 );
+  cake1 = new THREE.Mesh( loader, material1 );
 
 
 // Add mesh to scene
-      scene.add( mesh );
-      scene.add( mesh_Cake1 );
+      //scene.add( mesh );
+      //scene.add( cake1 );
+      //scene.add( mesh_Cake1 );
     }
   );
 
@@ -61,13 +66,9 @@ mesh_Cake1 = new THREE.Mesh( cake1, material_Cake1 );
 var render = function () {
   requestAnimationFrame( render );
 
-  mesh.rotation.x += 0.01; //Continuously rotate the mesh
-  mesh.rotation.y += 0.01;
+  //mesh.rotation.x += 0.01; //Continuously rotate the mesh
+  //mesh.rotation.y += 0.01;
 
-
-  mesh_Cake1.rotation.x += 0.02;
-	mesh_Cake1.rotation.y += 0.01;
-	mesh_Cake1.position.z -= 0.2;
 
   renderer.setClearColor("#000000");
   renderer.render(scene, camera);
