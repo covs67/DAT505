@@ -14,6 +14,26 @@ function init(){
   renderer.setSize( window.innerWidth, window.innerHeight );
 
   document.body.appendChild( renderer.domElement );
+
+  camera.position.z = 200;
+  var controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.25;
+  controls.enableZoom = true;
+
+  var keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30, 100%, 75%)'), 1.0);
+  keyLight.position.set(-100, 0, 100);
+
+  var fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(240, 100%, 75%)'), 0.75);
+  fillLight.position.set(100, 0, 100);
+
+  var backLight = new THREE.DirectionalLight(0xffffff, 1.0);
+  backLight.position.set(100, 0, -100).normalize();
+
+  scene.add(keyLight);
+  scene.add(fillLight);
+  scene.add(backLight);
+
 }
 
 function geoletters() {
@@ -37,23 +57,22 @@ function geoletters() {
       mesh.position.z = -1000;
       mesh.position.y = 100;
       mesh.position.x = -10;
-scene.add( mesh );
-});
+      scene.add( mesh );
+    }
+  );
 
 
-var objLoader = new THREE.OBJLoader();
-objLoader.setPath('models/');
-objLoader.load('Birthday_Cake.obj', function ( object ) {
-  object.position.y -= 60;
-  scene.add( object );
-	},
-	function ( xhr ) {
-		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-	},
-	function ( error ) {
-		console.log( 'An error happened' );
-	}
-);
+  cakeModel = new THREE.Object3D();
+
+  scene.add(cakeModel);
+  var mtlLoader = new THREE.MTLLoader();
+  mtlLoader.load('models/Birthday_Cake.mtl', function(materials){
+    var objLoader = new THREE.OBJLoader();
+    objLoader.setMaterials(materials);
+    objLoader.load('models/Birthday_Cake.obj', function ( object ) {
+      cakeModel.add( object );
+    });
+  })
 }
 // Render Loop
 var render = function () {
