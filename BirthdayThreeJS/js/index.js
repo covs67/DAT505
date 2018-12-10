@@ -1,39 +1,58 @@
 //Global variables
 var scene, camera, renderer;
-var geometry, texture, material, mesh, cake1, texture_Cake1, material_Cake1, mesh_Cake1;
+var geometry, texture, material, mesh, cake1, cakeModel, material_Cake1, mesh_Cake1;
+
+
 
 function init(){
-  scene = new THREE.Scene();
+    //Configure renderer settings-------------------------------------------------
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio((window.devicePixelRatio) ? window.devicePixelRatio : 1);
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.autoClear = false;
+    renderer.setClearColor(0x404040, 1.0);
+    document.body.appendChild(renderer.domElement);
+    //----------------------------------------------------------------------------
 
-  camera = new THREE.PerspectiveCamera(35, window.innerWidth/window.innerHeight, 300, 10000 );
+    // Create an empty scene
+    scene = new THREE.Scene();
 
-  renderer = new THREE.WebGLRenderer({antialias:true});
+    // Create a basic perspective camera
+    camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 500 );
+    camera.position.z = 400;
+    scene.add(camera);
 
-  renderer.setClearColor("#000000");
+    //Create the lights
+    var ambientLight = new THREE.AmbientLight(0x999999, 0.5);
+    scene.add(ambientLight);
 
-  renderer.setSize( window.innerWidth, window.innerHeight );
+    // var lights = [];
+    // lights[0] = new THREE.DirectionalLight( 0xffffff, 0.5);
+    // lights[0].position.set(1, 0, 0);
+    // lights[1] = new THREE.DirectionalLight( 0x11E8BB, 0.5);
+    // lights[1].position.set(0.75, 1, 0.5);
+    // lights[2] = new THREE.DirectionalLight( 0x8200C9, 0.5);
+    // lights[2].position.set(-0.75, -1, 0.5);
+    // scene.add(lights[0]);
+    // scene.add( lights[1] );
+    // scene.add( lights[2] );
 
-  document.body.appendChild( renderer.domElement );
+    window.addEventListener('resize', onWindowResize, false);
 
-  camera.position.z = 200;
-  var controls = new THREE.OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.25;
-  controls.enableZoom = true;
 
-  var keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30, 100%, 75%)'), 1.0);
-  keyLight.position.set(-100, 0, 100);
+    // var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    // controls.enableDamping = true;
+    // controls.dampingFactor = 0.25;
+    // controls.enableZoom = true;
+  }
 
-  var fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(240, 100%, 75%)'), 0.75);
-  fillLight.position.set(100, 0, 100);
 
-  var backLight = new THREE.DirectionalLight(0xffffff, 1.0);
-  backLight.position.set(100, 0, -100).normalize();
 
-  scene.add(keyLight);
-  scene.add(fillLight);
-  scene.add(backLight);
-
+//Keep everything appearing properly on screen when window resizes
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix(); //maintain aspect ratio
+  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 function geoletters() {
@@ -61,8 +80,7 @@ function geoletters() {
     }
   );
 
-
-  cakeModel = new THREE.Object3D();
+   cakeModel = new THREE.Object3D();
 
   scene.add(cakeModel);
   var mtlLoader = new THREE.MTLLoader();
@@ -74,16 +92,18 @@ function geoletters() {
     });
   })
 }
-// Render Loop
+
+//Render Loop
 var render = function () {
   requestAnimationFrame( render );
 
-  //mesh.rotation.x += 0.00;
-  //mesh.rotation.y += 0.00;
+  cakeModel.rotation.x -= 0.0020;
+  cakeModel.rotation.y -= 0.0030;
 
   renderer.setClearColor("#000000");
   renderer.render(scene, camera);
 };
+
 
 init();
 geoletters();
