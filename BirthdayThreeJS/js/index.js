@@ -63,7 +63,6 @@ camera.lookAt(new THREE.Vector3(0,-20,0));
     textureCube.format = THREE.RGBFormat;
     scene.background = textureCube;
 
-    // Add spheres (balloon)
     addBalloons();
 
 
