@@ -122,6 +122,47 @@ function addBalloons() {
     opacity: 0.6
   })
 
+  // Create balloons according to balloon count
+  for ( var i = 0; i < balloonCount; i ++ ) {
+
+
+
+    var sphereGroup = new THREE.Group;
+    var material = new THREE.MeshPhongMaterial( {
+      color: ballColors[i % ballColors.length],
+      transparent: true,
+      opacity: 0.4,
+      shininess: 50,
+      specular: 0x777777
+    } );
+    var mesh = new THREE.Mesh( geometry, material );
+    var line = new THREE.LineSegments( lineGeo, lineMat );
+
+    // set balloon position as random.
+    mesh.position.x = Math.random() * 20 - 10;
+    mesh.position.y = Math.random() * 20 - 10;
+    mesh.position.z = Math.random() * 1000 - 500;
+
+    // set random balloon size
+
+  mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * .1 + .3;
+  mesh.scale.y *= 1.2;
+  line.position.x = mesh.position.x;
+  line.position.y = mesh.position.y - 100 * mesh.scale.y - 10;
+  line.position.z = mesh.position.z;
+  line.scale.x = line.scale.y = line.scale.z = mesh.scale.y;
+
+
+  sphereGroup.add(mesh);
+  sphereGroup.add(line);
+
+     scene.add(sphereGroup);
+
+  spheres.push( sphereGroup );
+}
+
+}
+
 function geoletters() {
   cakeModel = new THREE.Object3D();
   scene.add(cakeWithFlame);
@@ -135,9 +176,7 @@ function geoletters() {
         .setMaterials(materials)
         .setPath('models/')
         .load('Birthday_Cake.obj', function ( object ) {
-          // set loaded cake object to cakeModel and set initial position and rotation.
-          // IMPORTANT: for position.z and x I applied those values to make sure
-          // the position of candles match with generated candle flame.
+
           cakeModel.add( object );
           cakeModel.rotation.x = -Math.PI / 2;
           cakeModel.position.y = -20
