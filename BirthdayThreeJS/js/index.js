@@ -141,6 +141,10 @@ function addBalloons() {
     mesh.position.x = Math.random() * 20 - 10;
     mesh.position.y = Math.random() * 20 - 10;
     mesh.position.z = Math.random() * 1000 - 500;
+    
+//avoid cake and balloon collission
+    if(Math.abs(mesh.position.z) < 40)
+      mesh.position.z = 40 + Math.abs(mesh.position.z);
 
     // set random balloon size
 
@@ -150,6 +154,7 @@ function addBalloons() {
   line.position.y = mesh.position.y - 100 * mesh.scale.y - 10;
   line.position.z = mesh.position.z;
   line.scale.x = line.scale.y = line.scale.z = mesh.scale.y;
+
 
 
   sphereGroup.add(mesh);
