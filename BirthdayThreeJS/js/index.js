@@ -48,6 +48,20 @@ camera.lookAt(new THREE.Vector3(0,-20,0));
   scene.add(lights[1]);
   scene.add(lights[2]);
 
+//skybox
+  var path = "textures/cube/Park2/";
+    var format = '.jpg';
+    var urls = [
+      path + 'posx' + format, path + 'negx' + format,
+      path + 'posy' + format, path + 'negy' + format,
+      path + 'posz' + format, path + 'negz' + format
+    ]; // get all skybox image urls into *urls* variable.
+    var textureCube = new THREE.CubeTextureLoader().load( urls ); // load skybox images
+    textureCube.format = THREE.RGBFormat;  // set skybox color format as RGB
+    scene.background = textureCube;  // set loaded skybox texture into scene.
+
+    // Add spheres (balloon)
+    addBalloons();
 
 
   window.addEventListener('resize', onWindowResize, false);
