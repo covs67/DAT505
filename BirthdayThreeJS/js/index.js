@@ -58,7 +58,7 @@ camera.lookAt(new THREE.Vector3(0,-20,0));
       controls.enableDamping = true;
       controls.dampingFactor = 0.25;
       controls.enableZoom = true;
-      
+
   }
 
 
@@ -76,53 +76,37 @@ function onDocumentMouseMove( event ) {
 }
 
 function geoletters() {
-  var loader = new THREE.FontLoader();
-  loader.load(
-    'fonts/helvetiker_regular.typeface.json',
-    function ( font ) {
-    	var geometry = new THREE.TextGeometry( 'Happy Birthday!', {
-    		font: font,
-    		size: 80,
-    		height: 5,
-    		curveSegments: 12,
-    		bevelEnabled: true,
-    		bevelThickness: 10,
-    		bevelSize: 8,
-    		bevelSegments: 5
-    	});
+  cakeModel = new THREE.Object3D();
 
-      material = new THREE.MeshBasicMaterial( { color: "#FF00FF" } );
-      mesh = new THREE.Mesh( geometry, material );
-      mesh.position.z = -1000;
-      mesh.position.y = 10;
-      mesh.position.x = -100;
-      scene.add( mesh );
-    }
-  );
+  // add cakeWithFlame group. right now it's just empty group.
+  // like balloon we also manage cake as group with cakemodel and candle flame
+  scene.add(cakeWithFlame);
 
-  var geometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
+  // load model obj and material
+  new THREE.MTLLoader()
+    .setPath('models/')
+    .load('Birthday_Cake.mtl', function(materials){
+      materials.preload();
+      new THREE.OBJLoader()
+        .setMaterials(materials)
+        .setPath('models/')
+        .load('Birthday_Cake.obj', function ( object ) {
+          // set loaded cake object to cakeModel and set initial position and rotation.
+          // IMPORTANT: for position.z and x I applied those values to make sure
+          // the position of candles match with generated candle flame.
+          cakeModel.add( object );
+          cakeModel.rotation.x = -Math.PI / 2;
+          cakeModel.position.y = -20
+          cakeModel.position.z = -0.5;
+          cakeModel.position.x = -0.2;
 
-  var mtlLoader = new THREE.MTLLoader();
-  mtlLoader.load('models/Birthday_Cake.mtl', function(materials){
-    materials.preload();
-    var objLoader = new THREE.OBJLoader();
-    objLoader.setMaterials(materials);
-    objLoader.load('models/Birthday_Cake.obj', function (mesh21 ) {
-      mesh21.traverse(function(node){
-				if( node instanceof THREE.Mesh ){
-					node.castShadow = true;
-					node.receiveShadow = true;
-				}
-    });
-  })
-  scene.add(mesh21);
-  objects.push(mesh21);
+          // add generated cakemodel to group.
+          cakeWithFlame.add(cakeModel);
 
-  mesh21.scale.set(1, 1, 1);
-  mesh21.position.set(1, 1, 1);
-  mesh21.rotation.y = -Math.PI/4;
+        //placeFlames(); // insert flames
 
-})
+        });
+    })
 }
 
 //Render Loop
