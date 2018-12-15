@@ -92,6 +92,36 @@ function onDocumentMouseMove( event ) {
   mouseY = ( event.clientY - windowHalfY ) / 5;
 }
 
+// Add Random Balloons
+function addBalloons() {
+  var geometry = new THREE.SphereBufferGeometry( 100, 32, 16 );
+  var lineGeo = new THREE.Geometry();
+
+  // Balloon tail
+  lineGeo.vertices.push(
+    new THREE.Vector3(0, 0, 0),
+    new THREE.Vector3(1, 2, 0),
+
+    new THREE.Vector3(1, 2, 0),
+    new THREE.Vector3(2, 4, 1),
+
+    new THREE.Vector3(2, 4, 1),
+    new THREE.Vector3(0, 6, 2),
+
+    new THREE.Vector3(0, 6, 2),
+    new THREE.Vector3(0, 8, 4),
+
+    new THREE.Vector3(0, 8, 4),
+    new THREE.Vector3(2, 10, 4)
+  )
+
+  var lineMat = new THREE.LineBasicMaterial({
+    color: 0xaaaaaa,
+    linewidth: 5,
+    transparent: true,
+    opacity: 0.6
+  })
+
 function geoletters() {
   cakeModel = new THREE.Object3D();
   scene.add(cakeWithFlame);
