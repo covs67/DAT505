@@ -19,6 +19,14 @@
   <body>
     <!--  code  -->
     <!--  <div id="canvas"></div>  -->
-    <script src="js/index.js"></script>
+
+    <iframe src="audio/bgm.mp3" allow="autoplay" style="display:none" id="iframeAudio" onended="reload()" >
+    </iframe>
+    <script src="js/index.js">
+
+    setInterval(function() {
+        document.getElementById('iframeAudio').src = "audio/bgm.mp3";
+      }, 105000);
+    </script>
   </body>
 </html>
