@@ -24,10 +24,29 @@ function init(){
 
     // Create an empty scene
     scene = new THREE.Scene();
-scene.background = new THREE.Color( 0xf0f0f0 );
-var light = new THREE.DirectionalLight( 0xffffff, 1 );
-  light.position.set( 1, 1, 1 ).normalize();
-  scene.add( light );
+
+    // Create a basic perspective camera
+  camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 5000 );
+  scene.add(camera);
+
+camera.position.z = 30;
+camera.position.y = 8;
+camera.lookAt(new THREE.Vector3(0,-20,0));
+
+// the lights
+  var ambientLight = new THREE.AmbientLight(0xFFFFFF, .5);
+  scene.add(ambientLight);
+
+  var lights = [];
+  lights[0] = new THREE.DirectionalLight( 0xffffff, 0.5);
+  lights[0].position.set(1, 0, 0);
+  lights[1] = new THREE.DirectionalLight( 0x11E8BB, 0.5);
+  lights[1].position.set(0.75, 1, 0.5);
+  lights[2] = new THREE.DirectionalLight( 0x8200C9, 0.5);
+  lights[2].position.set(-0.75, -1, 0.5);
+  scene.add(lights[0]);
+  scene.add(lights[1]);
+  scene.add(lights[2]);
 
 
 
