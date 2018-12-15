@@ -1,18 +1,26 @@
 //Global variables
 var scene, camera, renderer;
-var geometry, texture, material, mesh, cake1, cakeModel, material_Cake1, mesh_Cake1;
+var mouseX = 0, mouseY = 0;
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
+
+var cakeModel;
+var cakeWithFlame = new THREE.Group;
+var allFlameMaterials = [];
+var flames = [];
+var cakeRotSpeed = 0.0030;
 
 objects = [];
 
 function init(){
-    //Configure renderer settings-------------------------------------------------
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio((window.devicePixelRatio) ? window.devicePixelRatio : 1);
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    renderer.autoClear = false;
-    renderer.setClearColor(0x404040, 1.0);
-    document.body.appendChild(renderer.domElement);
-    //----------------------------------------------------------------------------
+  //Configure renderer settings-------------------------------------------------
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio((window.devicePixelRatio) ? window.devicePixelRatio : 1);
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.autoClear = true;
+  renderer.setClearColor(0x000000, 0.0);
+  document.body.appendChild(renderer.domElement);
+  //----------------------------------------------------------------------------
 
     // Create an empty scene
     scene = new THREE.Scene();
