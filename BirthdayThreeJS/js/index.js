@@ -55,10 +55,10 @@ camera.lookAt(new THREE.Vector3(0,-20,0));
       path + 'posx' + format, path + 'negx' + format,
       path + 'posy' + format, path + 'negy' + format,
       path + 'posz' + format, path + 'negz' + format
-    ]; // get all skybox image urls into *urls* variable.
-    var textureCube = new THREE.CubeTextureLoader().load( urls ); // load skybox images
-    textureCube.format = THREE.RGBFormat;  // set skybox color format as RGB
-    scene.background = textureCube;  // set loaded skybox texture into scene.
+    ];
+    var textureCube = new THREE.CubeTextureLoader().load( urls );
+    textureCube.format = THREE.RGBFormat;
+    scene.background = textureCube;
 
     // Add spheres (balloon)
     //addBalloons();
