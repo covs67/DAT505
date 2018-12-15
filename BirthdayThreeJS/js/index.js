@@ -2,7 +2,7 @@
 var scene, camera, renderer;
 var geometry, texture, material, mesh, cake1, cakeModel, material_Cake1, mesh_Cake1;
 
-
+objects = [];
 
 function init(){
     //Configure renderer settings-------------------------------------------------
@@ -16,16 +16,23 @@ function init(){
 
     // Create an empty scene
     scene = new THREE.Scene();
+scene.background = new THREE.Color( 0xf0f0f0 );
+var light = new THREE.DirectionalLight( 0xffffff, 1 );
+  light.position.set( 1, 1, 1 ).normalize();
+  scene.add( light );
 
-    // Create a basic perspective camera
-    camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 500 );
-    camera.position.z = 400;
-    scene.add(camera);
 
-    //Create the lights
-    var ambientLight = new THREE.AmbientLight(0x999999, 0.5);
-    scene.add(ambientLight);
 
+
+    // // Create a basic perspective camera
+    // camera = new THREE.PerspectiveCamera( 100, window.innerWidth/window.innerHeight, 2, 10000 );
+    // camera.position.z = 50;
+    // scene.add(camera);
+    //
+    // //Create the lights
+    // var ambientLight = new THREE.AmbientLight(0x999999, 0.5);
+    // scene.add(ambientLight);
+    //
     // var lights = [];
     // lights[0] = new THREE.DirectionalLight( 0xffffff, 0.5);
     // lights[0].position.set(1, 0, 0);
@@ -37,7 +44,7 @@ function init(){
     // scene.add( lights[1] );
     // scene.add( lights[2] );
 
-    window.addEventListener('resize', onWindowResize, false);
+    //window.addEventListener('resize', onWindowResize, false);
 
 
     // var controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -74,31 +81,43 @@ function geoletters() {
       material = new THREE.MeshBasicMaterial( { color: "#FF00FF" } );
       mesh = new THREE.Mesh( geometry, material );
       mesh.position.z = -1000;
-      mesh.position.y = 100;
-      mesh.position.x = -10;
+      mesh.position.y = 10;
+      mesh.position.x = -100;
       scene.add( mesh );
     }
   );
 
-   cakeModel = new THREE.Object3D();
+  var geometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
 
-  scene.add(cakeModel);
   var mtlLoader = new THREE.MTLLoader();
   mtlLoader.load('models/Birthday_Cake.mtl', function(materials){
+    materials.preload();
     var objLoader = new THREE.OBJLoader();
     objLoader.setMaterials(materials);
-    objLoader.load('models/Birthday_Cake.obj', function ( object ) {
-      cakeModel.add( object );
+    objLoader.load('models/Birthday_Cake.obj', function (mesh21 ) {
+      mesh21.traverse(function(node){
+				if( node instanceof THREE.Mesh ){
+					node.castShadow = true;
+					node.receiveShadow = true;
+				}
     });
   })
+  scene.add(mesh21);
+  objects.push(mesh21);
+
+  mesh21.scale.set(1, 1, 1);
+  mesh21.position.set(1, 1, 1);
+  mesh21.rotation.y = -Math.PI/4;
+
+})
 }
 
 //Render Loop
 var render = function () {
   requestAnimationFrame( render );
 
-  cakeModel.rotation.x -= 0.0020;
-  cakeModel.rotation.y -= 0.0030;
+  //cakeModel.rotation.x -= 0.0020;
+  //cakeModel.rotation.y -= 0.0030;
 
   renderer.setClearColor("#000000");
   renderer.render(scene, camera);
