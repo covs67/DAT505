@@ -206,7 +206,7 @@ var render = function () {
   for ( var i = 0, il = spheres.length; i < il; i ++ ) {
     var sphere = spheres[ i ];
     sphere.position.x = 500 * Math.cos( timer + i );
-    sphere.position.y = 200 * Math.sin( timer + i * 1.1 );
+    sphere.position.y = 200 * Math.sin( timer + i * 1.5 );
   }
 
   renderer.setClearColor("#000000");
