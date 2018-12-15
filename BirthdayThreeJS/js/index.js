@@ -10,7 +10,10 @@ var allFlameMaterials = [];
 var flames = [];
 var cakeRotSpeed = 0.0030;
 
-objects = [];
+var spheres = [];
+var ballColors = [0x00bfff, 0xff00ff, 0x7cfc00, 0xdc143c, 0x7fff00, 0x00bfff, 0x00ffff,0xff0000];
+var balloonCount = 100;
+var balloonSpeed = 0.0001;
 
 function init(){
   //Configure renderer settings-------------------------------------------------
@@ -91,9 +94,6 @@ function onDocumentMouseMove( event ) {
 
 function geoletters() {
   cakeModel = new THREE.Object3D();
-
-  // add cakeWithFlame group. right now it's just empty group.
-  // like balloon we also manage cake as group with cakemodel and candle flame
   scene.add(cakeWithFlame);
 
   // load model obj and material
