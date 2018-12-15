@@ -50,11 +50,15 @@ camera.lookAt(new THREE.Vector3(0,-20,0));
 
 
 
+  window.addEventListener('resize', onWindowResize, false);
+    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
-
-
-
-
+    // Orbit controls
+      var controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.25;
+      controls.enableZoom = true;
+      
   }
 
 
@@ -64,6 +68,11 @@ function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix(); //maintain aspect ratio
   renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function onDocumentMouseMove( event ) {
+  mouseX = ( event.clientX - windowHalfX ) / 5;
+  mouseY = ( event.clientY - windowHalfY ) / 5;
 }
 
 function geoletters() {
