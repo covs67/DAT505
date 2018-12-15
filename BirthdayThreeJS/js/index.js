@@ -141,7 +141,7 @@ function addBalloons() {
     mesh.position.x = Math.random() * 20 - 10;
     mesh.position.y = Math.random() * 20 - 10;
     mesh.position.z = Math.random() * 1000 - 500;
-    
+
 //avoid cake and balloon collission
     if(Math.abs(mesh.position.z) < 40)
       mesh.position.z = 40 + Math.abs(mesh.position.z);
@@ -187,10 +187,10 @@ function geoletters() {
           cakeModel.position.z = -0.5;
           cakeModel.position.x = -0.2;
 
-          // add generated cakemodel to group.
+          // add cakemodel to group.
           cakeWithFlame.add(cakeModel);
 
-        //placeFlames(); // insert flames
+        //placeFlames();
 
         });
     })
@@ -200,8 +200,14 @@ function geoletters() {
 var render = function () {
   requestAnimationFrame( render );
 
-  //cakeModel.rotation.x -= 0.0020;
-  //cakeModel.rotation.y -= 0.0030;
+  // Balloon random movement
+  var timer = balloonSpeed * Date.now();
+
+  for ( var i = 0, il = spheres.length; i < il; i ++ ) {
+    var sphere = spheres[ i ];
+    sphere.position.x = 500 * Math.cos( timer + i );
+    sphere.position.y = 200 * Math.sin( timer + i * 1.1 );
+  }
 
   renderer.setClearColor("#000000");
   renderer.render(scene, camera);
