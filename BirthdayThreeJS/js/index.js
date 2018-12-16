@@ -214,6 +214,7 @@ function flame(isFrontSide, x, z){
       flame(true, x, z);
     }
   }
+}
 //Render Loop
 var render = function () {
   requestAnimationFrame( render );
