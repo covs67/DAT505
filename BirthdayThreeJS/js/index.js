@@ -238,6 +238,15 @@ var render = function () {
   // rotate candleFlame.
   cakeWithFlame.rotation.y -= cakeRotSpeed;
 
+//random candle falme
+  time += clock.getDelta();
+
+  if(allFlameMaterials.length > 0) {
+    allFlameMaterials.map(function(flameMaterial, i) {
+      flameMaterial[0].uniforms.time.value = time + i;
+    })
+  }
+
   // Balloon random movement
   var timer = balloonSpeed * Date.now();
 
