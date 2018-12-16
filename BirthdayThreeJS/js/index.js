@@ -235,6 +235,9 @@ function flame(isFrontSide, x, z){
 var render = function () {
   requestAnimationFrame( render );
 
+  // rotate candleFlame.
+  cakeWithFlame.rotation.y -= cakeRotSpeed;
+
   // Balloon random movement
   var timer = balloonSpeed * Date.now();
 
