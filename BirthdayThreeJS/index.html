@@ -22,11 +22,20 @@
 
     <iframe src="audio/bgm.mp3" allow="autoplay" style="display:none" id="iframeAudio" onended="reload()" >
     </iframe>
-    <script src="js/index.js">
+    <script src="js/index.js"></script>
+<script>
 
+function getFlameMaterial(isFrontSide) {
+        let side = isFrontSide ? THREE.FrontSide : THREE.BackSide;
+        return new THREE.ShaderMaterial({
+          uniforms: {
+            time: {value: 0}
+          }
     setInterval(function() {
         document.getElementById('iframeAudio').src = "audio/bgm.mp3";
       }, 105000);
+    }
+  }
     </script>
   </body>
 </html>
