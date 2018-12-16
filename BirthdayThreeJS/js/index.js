@@ -190,7 +190,7 @@ function geoletters() {
           // add cakemodel to group.
           cakeWithFlame.add(cakeModel);
 
-        //placeFlames();
+      //no flames yet  //placeFlames();
 
         });
     })
