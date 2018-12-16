@@ -204,6 +204,22 @@ function flame(isFrontSide, x, z){
   var flameGeo = new THREE.SphereBufferGeometry(0.5, 32, 32);
   var flameMaterials = [];
 
+
+  flameGeo.translate(0, 0.5, 0);
+  var flameMat = getFlameMaterial(isFrontSide);
+  flameMaterials.push(flameMat);
+  var flame = new THREE.Mesh(flameGeo, flameMat);
+  flame.position.set(x, 2.6, z);
+  flame.rotation.y = THREE.Math.degToRad(-45);
+
+  flames.push(flame);
+  allFlameMaterials.push(flameMaterials);
+
+  caseMesh.add(flame);
+
+  cakeWithFlame.add(caseMesh);
+}
+
   // Add Flames per candle
   function placeFlames() {
 
@@ -214,7 +230,7 @@ function flame(isFrontSide, x, z){
       flame(true, x, z);
     }
   }
-}
+
 //Render Loop
 var render = function () {
   requestAnimationFrame( render );
