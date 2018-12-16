@@ -204,7 +204,16 @@ function flame(isFrontSide, x, z){
   var flameGeo = new THREE.SphereBufferGeometry(0.5, 32, 32);
   var flameMaterials = [];
 
+  // Add Flames per candle
+  function placeFlames() {
 
+    for(var i = 0; i < 16; i ++) {
+      a = THREE.Math.degToRad(360 / 16 * i + initialAngle) + cakeModel.rotation.z;
+      x = r * Math.cos(a);
+      z = r * Math.sin(a);
+      flame(true, x, z);
+    }
+  }
 //Render Loop
 var render = function () {
   requestAnimationFrame( render );
