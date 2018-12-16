@@ -196,6 +196,15 @@ function geoletters() {
     })
 }
 
+// Generate flame
+function flame(isFrontSide, x, z){
+  x, z place
+
+  var caseMesh = new THREE.Mesh(); // create empty mesh.
+  var flameGeo = new THREE.SphereBufferGeometry(0.5, 32, 32);
+  var flameMaterials = [];
+
+
 //Render Loop
 var render = function () {
   requestAnimationFrame( render );
