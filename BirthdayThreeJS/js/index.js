@@ -270,6 +270,18 @@ function flame(isFrontSide, x, z){
 
         textAnimeColors[i] = parseInt(Math.random() * textColors.length);
 
+    // Create text geometry
+      var textGeo = new THREE.TextGeometry( letter, {
+        font: font,
+        size: textInitialSize,
+        height: textInitialSize / 2,
+        curveSegments: 4,
+        bevelThickness: textBevelThickness,
+        bevelSize: textBevelSize,
+        bevelEnabled: true
+      });
+
+
 
 
 //Render Loop
