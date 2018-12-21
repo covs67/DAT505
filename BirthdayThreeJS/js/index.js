@@ -17,7 +17,22 @@ var ballColors = [0x00bfff, 0xff00ff, 0x7cfc00, 0xdc143c, 0x7fff00, 0x00bfff, 0x
 var balloonCount = 100;
 var balloonSpeed = 0.0001;
 
-
+var text = "Happy Birthday!  --- ^o^ --- ";
+var textColors = [0x00bfff, 0xff00ff, 0x7cfc00, 0xdc143c, 0x7fff00, 0x00bfff, 0x00ffff,0xff0000];
+var textScaleSize = 0.3;
+var textAnimeColors = [];
+var textRotSpeed = 0.2;
+var textInitialSize = 120;
+var textYScope = 5
+var textYSpeed = 10
+var textBevelThickness = 3;
+var textBevelSize = 3;
+var textFont = "fonts/gentilis_bold.typeface.json";
+var distanceToText = 1000;
+var textSizeInAngle = 8;
+var textRot = 0;
+var textColorTransformSpeed = 45;
+var textObjects = [];
 
 var dx, dy, dz;
 
