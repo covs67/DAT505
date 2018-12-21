@@ -208,7 +208,6 @@ function geoletters() {
 
 // Generate flame
 function flame(isFrontSide, x, z){
-  x, z place
 // This function creates one flame and places it on given x, z place
 
   var caseMesh = new THREE.Mesh(); // create empty mesh.
