@@ -262,9 +262,7 @@ function flame(isFrontSide, x, z){
   // Add fancy "Happy Birthday!" text
   function insertText() {
 
-
     var loader = new THREE.FontLoader();
-
     loader.load( textFont, function ( font ) {
       text.split('').map((letter, i) => {
 
