@@ -218,7 +218,8 @@ function geoletters() {
           cakeWithFlame.add(cakeModel);
 
       placeFlames();
-      insertText();
+    insertText();
+
         });
     })
 }
@@ -300,21 +301,21 @@ function flame(isFrontSide, x, z){
               var rot = Math.PI / 180 * textSizeInAngle * i;
 
   // calculate position based on rot.
-              textMesh.position.x = distanceToText * Math.sin(rot) + cakeModel.position.x;
-              textMesh.position.z = distanceToText * Math.cos(rot) * cakeModel.position.z;
-              textMesh.position.y = 0;
+    textMesh.position.x = distanceToText * Math.sin(rot) + cakeModel.position.x;
+    textMesh.position.z = distanceToText * Math.cos(rot) * cakeModel.position.z;
+    textMesh.position.y = 0;
 
 
-          scene.add(textMesh);
+      scene.add(textMesh);
 
 
-          textObjects.push(textMesh);
+      textObjects.push(textMesh);
 
-            });
+      });
 
-          });
+      });
 
-        }
+  }
 
 
 
