@@ -19,19 +19,19 @@ var balloonSpeed = 0.0001;
 
 var text = "Happy Birthday!  --- ^o^ --- ";
 var textColors = [0x00bfff, 0xff00ff, 0x7cfc00, 0xdc143c, 0x7fff00, 0x00bfff, 0x00ffff,0xff0000];
-var textScaleSize = 0.3;
-var textAnimeColors = [];
-var textRotSpeed = 0.2;
-var textInitialSize = 120;
-var textYScope = 5
-var textYSpeed = 10
-var textBevelThickness = 3;
-var textBevelSize = 3;
-var textFont = "fonts/gentilis_bold.typeface.json";
-var distanceToText = 1000;
-var textSizeInAngle = 8;
-var textRot = 0;
-var textColorTransformSpeed = 45;
+var textScaleSize = 0.3; //delta scale for letters
+var textAnimeColors = []; // Index of current color for each letter
+var textRotSpeed = 0.2;  // Text world rotation speed. in degree
+var textInitialSize = 120; // Initial font size for text
+var textYScope = 5  // Text Sin wave height.
+var textYSpeed = 10  // Text Sin wave speed
+var textBevelThickness = 3; // Text bevel thickness
+var textBevelSize = 3;   // Text bevel size
+var textFont = "fonts/gentilis_bold.typeface.json";  // textFont  ::Only ThreeJS fonts are available
+var distanceToText = 1000; // Distance from cakemodel to text
+var textSizeInAngle = 8; // Angle width for each letter.
+var textRot = 0;  // current text rotation.
+var textColorTransformSpeed = 45; // text color transform speed.  
 var textObjects = [];
 
 var dx, dy, dz;
