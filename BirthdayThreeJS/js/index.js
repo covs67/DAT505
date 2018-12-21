@@ -281,6 +281,18 @@ function flame(isFrontSide, x, z){
         bevelEnabled: true
       });
 
+      // Using buffergeometry for performance.
+            textGeo = new THREE.BufferGeometry().fromGeometry( textGeo );
+
+            // Create text material : similar to balloon material
+            var material = new THREE.MeshPhongMaterial( {
+              color: textColors[textAnimeColors[i]],
+              flatShading: true,
+              shininess: 50,
+              specular: 0x777777,
+              transparent: true,
+              opacity: 0.7
+            } );
 
 
 
