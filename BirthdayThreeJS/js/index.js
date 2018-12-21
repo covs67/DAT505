@@ -17,7 +17,7 @@ var ballColors = [0x00bfff, 0xff00ff, 0x7cfc00, 0xdc143c, 0x7fff00, 0x00bfff, 0x
 var balloonCount = 100;
 var balloonSpeed = 0.0001;
 
-var dx, dy, dz;
+var dx, dy, dz; gh
 
 var clock = new THREE.Clock();
 var time = 0;
