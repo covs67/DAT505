@@ -17,7 +17,7 @@ var ballColors = [0x00bfff, 0xff00ff, 0x7cfc00, 0xdc143c, 0x7fff00, 0x00bfff, 0x
 var balloonCount = 100;
 var balloonSpeed = 0.0001;
 
-var dx, dy, dz; 
+var dx, dy, dz;
 
 var clock = new THREE.Clock();
 var time = 0;
@@ -200,7 +200,7 @@ function geoletters() {
           // add cakemodel to group.
           cakeWithFlame.add(cakeModel);
 
-      //no flames yet  //placeFlames();
+      placeFlames();
 
         });
     })
@@ -209,6 +209,7 @@ function geoletters() {
 // Generate flame
 function flame(isFrontSide, x, z){
   x, z place
+// This function creates one flame and places it on given x, z place
 
   var caseMesh = new THREE.Mesh(); // create empty mesh.
   var flameGeo = new THREE.SphereBufferGeometry(0.5, 32, 32);
@@ -249,13 +250,13 @@ var render = function () {
   cakeWithFlame.rotation.y -= cakeRotSpeed;
 
 //random candle falme
-  // time += clock.getDelta();
-  //
-  // if(allFlameMaterials.length > 0) {
-  //   allFlameMaterials.map(function(flameMaterial, i) {
-  //     flameMaterial[0].uniforms.time.value = time + i;
-  //   })
-  // }
+  time += clock.getDelta();
+
+  if(allFlameMaterials.length > 0) {
+    allFlameMaterials.map(function(flameMaterial, i) {
+      flameMaterial[0].uniforms.time.value = time + i;
+    })
+  }
 
   // Balloon random movement
   var timer = balloonSpeed * Date.now();
@@ -265,6 +266,18 @@ var render = function () {
     sphere.position.x = 500 * Math.cos( timer + i );
     sphere.position.y = 200 * Math.sin( timer + i * 1.5 );
   }
+
+
+  // camera mouse animation
+
+dx = ( mouseX - camera.position.x ) * .05
+dy = ( - mouseY - camera.position.y ) * .05;
+
+camera.position.x += dx;
+camera.position.y += dy;
+
+camera.lookAt( scene.position );
+
 
   renderer.setClearColor("#000000");
   renderer.render(scene, camera);
