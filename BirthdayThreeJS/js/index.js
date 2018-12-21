@@ -268,9 +268,9 @@ function flame(isFrontSide, x, z){
       text.split('').map((letter, i) => {
 
 
-        textAnimeColors[i] = parseInt(Math.random() * textColors.length);
+  textAnimeColors[i] = parseInt(Math.random() * textColors.length);
 
-    // Create text geometry
+// Create text geometry
       var textGeo = new THREE.TextGeometry( letter, {
         font: font,
         size: textInitialSize,
@@ -281,10 +281,10 @@ function flame(isFrontSide, x, z){
         bevelEnabled: true
       });
 
-      // Using buffergeometry for performance.
+// Using buffergeometry for performance.
             textGeo = new THREE.BufferGeometry().fromGeometry( textGeo );
 
-            // Create text material : similar to balloon material
+  // Create text material : similar to balloon material
             var material = new THREE.MeshPhongMaterial( {
               color: textColors[textAnimeColors[i]],
               flatShading: true,
@@ -293,6 +293,28 @@ function flame(isFrontSide, x, z){
               transparent: true,
               opacity: 0.7
             } );
+
+            // Create textMesh for one letter.
+              var textMesh = new THREE.Mesh(textGeo, material);
+              // calculate rotation of i-th letter.
+              var rot = Math.PI / 180 * textSizeInAngle * i;
+
+              // calculate position based on rot.
+              textMesh.position.x = distanceToText * Math.sin(rot) + cakeModel.position.x;
+              textMesh.position.z = distanceToText * Math.cos(rot) * cakeModel.position.z;
+              textMesh.position.y = 0;
+
+
+              scene.add(textMesh);
+
+
+              textObjects.push(textMesh);
+
+            });
+
+          });
+
+        }
 
 
 
