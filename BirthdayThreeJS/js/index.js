@@ -31,7 +31,7 @@ var textFont = "fonts/gentilis_bold.typeface.json";  // textFont  ::Only ThreeJS
 var distanceToText = 1000; // Distance from cakemodel to text
 var textSizeInAngle = 8; // Angle width for each letter.
 var textRot = 0;  // current text rotation.
-var textColorTransformSpeed = 45; // text color transform speed.  
+var textColorTransformSpeed = 45; // text color transform speed.
 var textObjects = [];
 
 var dx, dy, dz;
@@ -257,6 +257,20 @@ function flame(isFrontSide, x, z){
       flame(true, x, z);
     }
   }
+
+  // Add fancy "Happy Birthday!" text
+  function insertText() {
+
+
+    var loader = new THREE.FontLoader();
+
+    loader.load( textFont, function ( font ) {
+      text.split('').map((letter, i) => {
+
+
+        textAnimeColors[i] = parseInt(Math.random() * textColors.length);
+
+
 
 //Render Loop
 var render = function () {
