@@ -343,7 +343,6 @@ var render = function () {
   }
 
   // Text Animation
-
   // calculate next rotation angle of text.
   textRot -= textRotSpeed;
   if(textRot < 0) { // make it loop.
@@ -365,15 +364,17 @@ var rot = Math.PI / 180 * (textSizeInAngle * i + textRot);
 textObjects[i].position.x = distanceToText * Math.sin(rot) + cakeModel.position.x;
 textObjects[i].position.z = distanceToText * Math.cos(rot) * cakeModel.position.z;
 textObjects[i].position.y = cakeModel.position.y + Math.sin(rot * textYSpeed) * textYScope;
-      // letters face cakemodel
+// letters face cakemodel
 textObjects[i].rotation.y = -rot;
 
 textObjects[i].scale.x = 1 + Math.sin(rot * textYSpeed) * textScaleSize;
 textObjects[i].scale.y = 1 + Math.sin(rot * textYSpeed) * textScaleSize;
 
+if((textRot % (textRotSpeed * textColorTransformSpeed)) < textRotSpeed) {
+      textObjects[i]['material']['color'].set(textColors[textAnimeColors[i]]);
+    }
 
 })
-
 
   // camera mouse animation
 
