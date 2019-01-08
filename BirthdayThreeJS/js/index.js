@@ -355,14 +355,14 @@ var render = function () {
       textAnimeColors[j] = textAnimeColors[j - 1];
     textAnimeColors[j] = parseInt(Math.random() * textColors.length);
   }
-// //text movement
-//   text.split('').map((letter, i) => {
-//     if(!textObjects[i])
-//       return;
-// )
-// }
+   //text movement
+  text.split('').map((letter, i) => {
+    if(!textObjects[i])
+      return;
+//rotation calc
+var rot = Math.PI / 180 * (textSizeInAngle * i + textRot);
       // letters face cakemodel
-    textObjects[i].rotation.y = -rot;
+    //textObjects[i].rotation.y = -rot;
 
 
   // camera mouse animation
