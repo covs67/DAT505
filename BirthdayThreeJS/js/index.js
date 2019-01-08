@@ -355,6 +355,10 @@ var render = function () {
       textAnimeColors[j] = textAnimeColors[j - 1];
     textAnimeColors[j] = parseInt(Math.random() * textColors.length);
   }
+//text movement
+  text.split('').map((letter, i) => {
+    if(!textObjects[i])
+      return;
 
 
   // camera mouse animation
