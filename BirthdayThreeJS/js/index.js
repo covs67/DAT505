@@ -360,6 +360,9 @@ var render = function () {
     if(!textObjects[i])
       return;
 
+      // letters face cakemodel
+    textObjects[i].rotation.y = -rot;
+
 
   // camera mouse animation
 
