@@ -368,6 +368,10 @@ textObjects[i].position.y = cakeModel.position.y + Math.sin(rot * textYSpeed) * 
       // letters face cakemodel
 textObjects[i].rotation.y = -rot;
 
+textObjects[i].scale.x = 1 + Math.sin(rot * textYSpeed) * textScaleSize;
+textObjects[i].scale.y = 1 + Math.sin(rot * textYSpeed) * textScaleSize;
+
+
 })
 
 
