@@ -368,6 +368,8 @@ textObjects[i].position.y = cakeModel.position.y + Math.sin(rot * textYSpeed) * 
       // letters face cakemodel
 textObjects[i].rotation.y = -rot;
 
+})
+
 
   // camera mouse animation
 
