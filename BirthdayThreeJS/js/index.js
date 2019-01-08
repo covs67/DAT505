@@ -342,6 +342,14 @@ var render = function () {
     sphere.position.y = 200 * Math.sin( timer + i * 1.5 );
   }
 
+  // Text Animation
+
+  // calculate next rotation angle of text.
+  textRot -= textRotSpeed;
+  if(textRot < 0) { // make it loop.
+    textRot = textRot + 360;
+  }
+
 
   // camera mouse animation
 
