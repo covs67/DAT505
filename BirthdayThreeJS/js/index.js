@@ -349,6 +349,12 @@ var render = function () {
   if(textRot < 0) { // make it loop.
     textRot = textRot + 360;
   }
+//shift lettr color by 1 and insert new random color at first letter
+  if((textRot % (textRotSpeed * textColorTransformSpeed)) < textRotSpeed) {
+    for(var j = text.length - 1; j > 0; j --)
+      textAnimeColors[j] = textAnimeColors[j - 1];
+    textAnimeColors[j] = parseInt(Math.random() * textColors.length);
+  }
 
 
   // camera mouse animation
