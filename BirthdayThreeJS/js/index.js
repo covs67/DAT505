@@ -92,7 +92,6 @@ camera.lookAt(new THREE.Vector3(0,-20,0));
 
     addBalloons();
 
-
   window.addEventListener('resize', onWindowResize, false);
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
@@ -103,8 +102,6 @@ camera.lookAt(new THREE.Vector3(0,-20,0));
       controls.enableZoom = true;
 
   }
-
-
 
 //Keep everything appearing properly on screen when window resizes
 function onWindowResize() {
@@ -151,8 +148,6 @@ function addBalloons() {
   // Create balloons according to balloon count
   for ( var i = 0; i < balloonCount; i ++ ) {
 
-
-
     var sphereGroup = new THREE.Group;
     var material = new THREE.MeshPhongMaterial( {
       color: ballColors[i % ballColors.length],
@@ -181,7 +176,6 @@ function addBalloons() {
   line.position.y = mesh.position.y - 100 * mesh.scale.y - 10;
   line.position.z = mesh.position.z;
   line.scale.x = line.scale.y = line.scale.z = mesh.scale.y;
-
 
 
   sphereGroup.add(mesh);
@@ -315,8 +309,6 @@ function flame(isFrontSide, x, z){
 
   }
 
-
-
 //Render Loop
 var render = function () {
   requestAnimationFrame( render );
@@ -341,7 +333,6 @@ var render = function () {
     sphere.position.x = 500 * Math.cos( timer + i );
     sphere.position.y = 200 * Math.sin( timer + i * 1.5 );
   }
-
   // Text Animation
   // calculate next rotation angle of text.
   textRot -= textRotSpeed;
@@ -373,7 +364,6 @@ textObjects[i].scale.y = 1 + Math.sin(rot * textYSpeed) * textScaleSize;
 if((textRot % (textRotSpeed * textColorTransformSpeed)) < textRotSpeed) {
       textObjects[i]['material']['color'].set(textColors[textAnimeColors[i]]);
     }
-
 })
 
   // camera mouse animation
