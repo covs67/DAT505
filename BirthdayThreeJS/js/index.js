@@ -361,8 +361,12 @@ var render = function () {
       return;
 //rotation calc
 var rot = Math.PI / 180 * (textSizeInAngle * i + textRot);
+//text goes round cake model with radius separation of distanceToText
+textObjects[i].position.x = distanceToText * Math.sin(rot) + cakeModel.position.x;
+textObjects[i].position.z = distanceToText * Math.cos(rot) * cakeModel.position.z;
+textObjects[i].position.y = cakeModel.position.y + Math.sin(rot * textYSpeed) * textYScope;
       // letters face cakemodel
-    //textObjects[i].rotation.y = -rot;
+textObjects[i].rotation.y = -rot;
 
 
   // camera mouse animation
