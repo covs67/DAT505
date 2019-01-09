@@ -164,12 +164,11 @@ function addBalloons() {
     mesh.position.y = Math.random() * 20 - 10;
     mesh.position.z = Math.random() * 1000 - 500;
 
-//avoid cake and balloon collission
+   //avoid cake and balloon collission
     if(Math.abs(mesh.position.z) < 40)
       mesh.position.z = 40 + Math.abs(mesh.position.z);
 
-    // set random balloon size
-
+  // set random balloon size
   mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * .1 + .3;
   mesh.scale.y *= 1.2;
   line.position.x = mesh.position.x;
@@ -185,7 +184,6 @@ function addBalloons() {
 
   spheres.push( sphereGroup );
 }
-
 }
 
 function geoletters() {
@@ -260,7 +258,6 @@ function flame(isFrontSide, x, z){
     loader.load( textFont, function ( font ) {
       text.split('').map((letter, i) => {
 
-
   textAnimeColors[i] = parseInt(Math.random() * textColors.length);
 
 // Create text geometry
@@ -297,18 +294,12 @@ function flame(isFrontSide, x, z){
     textMesh.position.z = distanceToText * Math.cos(rot) * cakeModel.position.z;
     textMesh.position.y = 0;
 
-
       scene.add(textMesh);
 
-
       textObjects.push(textMesh);
-
       });
-
       });
-
   }
-
 //Render Loop
 var render = function () {
   requestAnimationFrame( render );
@@ -365,9 +356,7 @@ if((textRot % (textRotSpeed * textColorTransformSpeed)) < textRotSpeed) {
       textObjects[i]['material']['color'].set(textColors[textAnimeColors[i]]);
     }
 })
-
   // camera mouse animation
-
 dx = ( mouseX - camera.position.x ) * .05
 dy = ( - mouseY - camera.position.y ) * .05;
 
@@ -376,11 +365,9 @@ camera.position.y += dy;
 
 camera.lookAt( scene.position );
 
-
   renderer.setClearColor("#000000");
   renderer.render(scene, camera);
 };
-
 
 init();
 geoletters();
