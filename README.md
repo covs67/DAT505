@@ -18,7 +18,7 @@ For simplicity, I used Atom IDE with a package called Atom Live Server
 To do this you need to do following steps.
  - Download and Install Atom
  - Install the Atom Live server package
- - Run the server and see your work in real time
+ - Run the server and see the project work in real time
 
 
 FOr apache or Nginx you just need to copy the project files into web root folder
