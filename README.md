@@ -31,6 +31,7 @@ Basically you can customize the following things with simple JS update
  - change "Happy Birthday!" text
  - change "Happy Birthday!" text animation. (rotation speed, pulsating scale, rate)
  - change lights
+ - change text, balloon speeds
 
 # What you can't do
 Actually this *can't* doesn't mean you really can't but means you need to do some extra works to do the following
