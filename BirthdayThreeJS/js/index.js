@@ -34,7 +34,7 @@ var textColorTransformSpeed = 45; // text color transform speed.
 var textObjects = [];
 
 var dx, dy, dz;
-
+// Do NOT modify following variables!  used for render ticker
 var clock = new THREE.Clock();
 var time = 0;
 var r = 11;
@@ -84,10 +84,10 @@ camera.lookAt(new THREE.Vector3(0,-20,0));
       path + 'posx' + format, path + 'negx' + format,
       path + 'posy' + format, path + 'negy' + format,
       path + 'posz' + format, path + 'negz' + format
-    ];
-    var textureCube = new THREE.CubeTextureLoader().load( urls );
-    textureCube.format = THREE.RGBFormat;
-    scene.background = textureCube;
+    ];// get all skybox image urls into *urls* variable.
+    var textureCube = new THREE.CubeTextureLoader().load( urls ); // load skybox images
+    textureCube.format = THREE.RGBFormat;  // set skybox color format as RGB
+    scene.background = textureCube;  // set loaded skybox texture into scene.
 
     addBalloons();
 
@@ -108,7 +108,7 @@ function onWindowResize() {
   camera.updateProjectionMatrix(); //maintain aspect ratio
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
-
+// Save mouse point for applying mouse move effect on camera.
 function onDocumentMouseMove( event ) {
   mouseX = ( event.clientX - windowHalfX ) / 5;
   mouseY = ( event.clientY - windowHalfY ) / 5;
@@ -116,8 +116,8 @@ function onDocumentMouseMove( event ) {
 
 // Add Random Balloons
 function addBalloons() {
-  var geometry = new THREE.SphereBufferGeometry( 100, 32, 16 );
-  var lineGeo = new THREE.Geometry();
+  var geometry = new THREE.SphereBufferGeometry( 100, 32, 16 ); // basic balloon geometry (initially it's sphere)
+  var lineGeo = new THREE.Geometry(); // geometry for balloon tail
 
   // Balloon tail
   lineGeo.vertices.push(
