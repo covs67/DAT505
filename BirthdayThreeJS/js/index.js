@@ -146,17 +146,17 @@ function addBalloons() {
 
   // Create balloons according to balloon count
   for ( var i = 0; i < balloonCount; i ++ ) {
-
+    //Here balloons are controlled as group of balloon sphere and tail.
     var sphereGroup = new THREE.Group;
-    var material = new THREE.MeshPhongMaterial( {
+    var material = new THREE.MeshPhongMaterial( { // balloon sphere material.
       color: ballColors[i % ballColors.length],
       transparent: true,
       opacity: 0.4,
       shininess: 50,
       specular: 0x777777
     } );
-    var mesh = new THREE.Mesh( geometry, material );
-    var line = new THREE.LineSegments( lineGeo, lineMat );
+    var mesh = new THREE.Mesh( geometry, material ); // create balloon mesh
+    var line = new THREE.LineSegments( lineGeo, lineMat );  // create balloon tail
 
     // set balloon position as random.
     mesh.position.x = Math.random() * 20 - 10;
@@ -175,19 +175,19 @@ function addBalloons() {
   line.position.z = mesh.position.z;
   line.scale.x = line.scale.y = line.scale.z = mesh.scale.y;
 
-
+// add created balloon and tail to group
   sphereGroup.add(mesh);
   sphereGroup.add(line);
 
-     scene.add(sphereGroup);
+     scene.add(sphereGroup);  //  add balloon group here
 
-  spheres.push( sphereGroup );
+  spheres.push( sphereGroup ); // save created balloon for later control
 }
 }
-
+// Add Cake Object
 function geoletters() {
   cakeModel = new THREE.Object3D();
-  scene.add(cakeWithFlame);
+  scene.add(cakeWithFlame);  // add cakeWithFlame group
 
   // load model obj and material
   new THREE.MTLLoader()
@@ -198,7 +198,8 @@ function geoletters() {
         .setMaterials(materials)
         .setPath('models/')
         .load('Birthday_Cake.obj', function ( object ) {
-
+// set loaded cake object to cakeModel and set initial position and rotation.
+// the position of candles match with generated candle flame.
           cakeModel.add( object );
           cakeModel.rotation.x = -Math.PI / 2;
           cakeModel.position.y = -20
@@ -223,7 +224,7 @@ function flame(isFrontSide, x, z){
   var flameGeo = new THREE.SphereBufferGeometry(0.5, 32, 32);
   var flameMaterials = [];
 
-
+    // Please don't udpate following codes. Basically makes the flames work
   flameGeo.translate(0, 0.5, 0);
   var flameMat = getFlameMaterial(isFrontSide);
   flameMaterials.push(flameMat);
@@ -241,7 +242,7 @@ function flame(isFrontSide, x, z){
 
   // Add Flames per candle
   function placeFlames() {
-
+// Calculate each position of candle tip and place flames for them.
     for(var i = 0; i < 16; i ++) {
       a = THREE.Math.degToRad(360 / 16 * i + initialAngle) + cakeModel.rotation.z;
       x = r * Math.cos(a);
@@ -252,11 +253,11 @@ function flame(isFrontSide, x, z){
 
   // Add fancy "Happy Birthday!" text
   function insertText() {
-
+// Creates text object for each letter of string.
     var loader = new THREE.FontLoader();
     loader.load( textFont, function ( font ) {
       text.split('').map((letter, i) => {
-
+// Initialize Color of text as randome one.
   textAnimeColors[i] = parseInt(Math.random() * textColors.length);
 
 // Create text geometry
@@ -284,18 +285,18 @@ function flame(isFrontSide, x, z){
             } );
 
   // Create textMesh for one letter.
-              var textMesh = new THREE.Mesh(textGeo, material);
-              // calculate rotation of i-th letter.
-              var rot = Math.PI / 180 * textSizeInAngle * i;
+    var textMesh = new THREE.Mesh(textGeo, material);
+  // calculate rotation of i-th letter.
+    var rot = Math.PI / 180 * textSizeInAngle * i;
 
   // calculate position based on rot.
     textMesh.position.x = distanceToText * Math.sin(rot) + cakeModel.position.x;
     textMesh.position.z = distanceToText * Math.cos(rot) * cakeModel.position.z;
     textMesh.position.y = 0;
 
-      scene.add(textMesh);
+      scene.add(textMesh); // add generated mesh to scene.
 
-      textObjects.push(textMesh);
+      textObjects.push(textMesh);  // save generated mesh for later control
       });
       });
   }
@@ -330,27 +331,28 @@ var render = function () {
     textRot = textRot + 360;
   }
 //shift lettr color by 1 and insert new random color at first letter
+//and insert new random color at first letter.
   if((textRot % (textRotSpeed * textColorTransformSpeed)) < textRotSpeed) {
     for(var j = text.length - 1; j > 0; j --)
       textAnimeColors[j] = textAnimeColors[j - 1];
     textAnimeColors[j] = parseInt(Math.random() * textColors.length);
   }
-   //text movement
+   //text movement for each letter
   text.split('').map((letter, i) => {
     if(!textObjects[i])
       return;
-//rotation calc
+//rotation angle calculation for i letter
 var rot = Math.PI / 180 * (textSizeInAngle * i + textRot);
-//text goes round cake model with radius separation of distanceToText
+//text goes round cake model with radius separation of distanceToText and determine position of i
 textObjects[i].position.x = distanceToText * Math.sin(rot) + cakeModel.position.x;
 textObjects[i].position.z = distanceToText * Math.cos(rot) * cakeModel.position.z;
 textObjects[i].position.y = cakeModel.position.y + Math.sin(rot * textYSpeed) * textYScope;
 // letters face cakemodel
 textObjects[i].rotation.y = -rot;
-
+// Make i letter scale respond to rot
 textObjects[i].scale.x = 1 + Math.sin(rot * textYSpeed) * textScaleSize;
 textObjects[i].scale.y = 1 + Math.sin(rot * textYSpeed) * textScaleSize;
-
+//update colour
 if((textRot % (textRotSpeed * textColorTransformSpeed)) < textRotSpeed) {
       textObjects[i]['material']['color'].set(textColors[textAnimeColors[i]]);
     }
