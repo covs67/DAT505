@@ -11,7 +11,6 @@ var flames = [];
 var cakeRotSpeed = 0.0030;
 
 
-
 var spheres = [];
 var ballColors = [0x00bfff, 0xff00ff, 0x7cfc00, 0xdc143c, 0x7fff00, 0x00bfff, 0x00ffff,0xff0000];
 var balloonCount = 100;
