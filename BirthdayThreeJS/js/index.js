@@ -16,7 +16,7 @@ var ballColors = [0x00bfff, 0xff00ff, 0x7cfc00, 0xdc143c, 0x7fff00, 0x00bfff, 0x
 var balloonCount = 100;
 var balloonSpeed = 0.0001;
 
-var text = "Happy Birthday!  --- ^o^ --- ";
+var text = "Happy Birthday!  --^-- ˜›^o^˜› --^-- ";
 var textColors = [0x00bfff, 0xff00ff, 0x7cfc00, 0xdc143c, 0x7fff00, 0x00bfff, 0x00ffff,0xff0000];
 var textScaleSize = 0.3; //delta scale for letters
 var textAnimeColors = []; // Index of current color for each letter
