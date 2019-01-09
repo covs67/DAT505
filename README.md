@@ -6,7 +6,7 @@ Classical Audiovisual experience using three JS.
 
 #Application
 
-Used (either printed out or shown digitally) when wishing a close friend or family a happy birthday.  
+Used (either printed out or shown digitally) when wishing any friend or family member a happy birthday.  
 
 
 # How to run the project
